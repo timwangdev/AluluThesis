@@ -1,6 +1,9 @@
 package dev.timwang.alulu.thesis;
 
 import android.os.Bundle;
+import android.speech.RecognitionListener;
+import android.speech.SpeechRecognizer;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private SpeechRecognizer mSpeechRecognizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,63 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        if (SpeechRecognizer.isRecognitionAvailable(this)) {
+            SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+            mSpeechRecognizer.setRecognitionListener(new CustomRecognitionListener());
+        } else {
+            Log.w("speech", "Speech recognition is not supported on this device.");
+        }
+
     }
+
+    class CustomRecognitionListener implements RecognitionListener {
+
+        @Override
+        public void onReadyForSpeech(Bundle params) {
+
+        }
+
+        @Override
+        public void onBeginningOfSpeech() {
+
+        }
+
+        @Override
+        public void onBufferReceived(byte[] buffer) {
+
+        }
+
+        @Override
+        public void onEndOfSpeech() {
+
+        }
+
+        @Override
+        public void onPartialResults(Bundle partialResults) {
+
+        }
+
+        @Override
+        public void onResults(Bundle results) {
+
+        }
+
+        @Override
+        public void onError(int error) {
+
+        }
+
+        @Override
+        public void onRmsChanged(float rmsdB) {
+        }
+
+        @Override
+        public void onEvent(int eventType, Bundle params) {
+
+        }
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
