@@ -21,5 +21,7 @@
     <string name="action_previous">Previous</string>
     <string name="menu_content">Content</string>
     <string name="action_help">Help</string>
+    <string name="title_introduction">Introduction</string>
+    <string name="title_home">Home Page</string>
 
 </resources>

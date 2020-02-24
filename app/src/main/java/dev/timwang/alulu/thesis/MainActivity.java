@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         int id = item.getItemId();
         switch (id) {
             case R.id.action_previous:
@@ -71,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_next:
                 invalidateOptionsMenu();
+                return true;
+            case R.id.action_home:
+                invalidateOptionsMenu();
+                navController.navigate(R.id.nav_home);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
