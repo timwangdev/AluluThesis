@@ -9,9 +9,9 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/nav_header_text"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:fontFamily="sans-serif-medium" />
+        android:textColor="#DE000000"
+        android:textSize="20sp" />
 
 </LinearLayout>
