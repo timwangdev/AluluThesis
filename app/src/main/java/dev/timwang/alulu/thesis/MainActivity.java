@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status == VoiceController.VOICE_PLAYING) {
                     voiceController.stop();
                 } else if (status == VoiceController.IDLE) {
-                    voiceController.play();
+                    voiceController.playPrompt(true);
                 }
             }
         });

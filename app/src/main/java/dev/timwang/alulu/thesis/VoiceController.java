@@ -113,19 +113,22 @@ class VoiceController {
         }
     }
 
-    void play() {
-        setMediaSource(audioResIdList.get(context.getCurrentPage()));
+    void playPrompt() {
+        playPrompt(false);
     }
 
-    void playPrompt() {
-        if (askCtx != NOT_ASKING) {
+    void playPrompt(boolean forced) {
+        if (forced || askCtx != NOT_ASKING) {
             setMediaSource(R.raw.prompt_current);
             askCtx = ASK_NEXT;
         }
     }
 
     void stop() {
-        mediaPlayer.stop();
+        if (askCtx != ASK_START) {
+            mediaPlayer.stop();
+            setVoiceStatus(IDLE);
+        }
     }
 
     public interface StatusChangeListener {
