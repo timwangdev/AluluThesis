@@ -1,33 +1,31 @@
 package dev.timwang.alulu.thesis;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognitionListener;
-import android.speech.SpeechRecognizer;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
-    private SpeechRecognizer mSpeechRecognizer;
+    private MainPagerAdapter mainPagerAdapter;
+    private ViewPager viewPager;
+    private FloatingActionButton fab;
+    private VoiceController voiceController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View decorView = getWindow().getDecorView();
+        final View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -36,84 +34,73 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomAppBar bottomBar = findViewById(R.id.bar);
         setSupportActionBar(bottomBar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home,
-                R.id.nav_introduction,
-                R.id.nav_chapter_1,
-                R.id.nav_chapter_2,
-                R.id.nav_conclusion,
-                R.id.nav_reference
-        )
-                .setDrawerLayout(drawer)
-                .build();
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
 
-        if (SpeechRecognizer.isRecognitionAvailable(this)) {
-            SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-            mSpeechRecognizer.setRecognitionListener(new CustomRecognitionListener());
-        } else {
-            Log.w("speech", "Speech recognition is not supported on this device.");
-        }
+        final TextView appBarTitle = findViewById(R.id.app_bar_title);
+        mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
+        viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(mainPagerAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
+            @Override
+            public void onPageSelected(int position) {
+                voiceController.stop();
+                if (position == 0) {
+                    appBarTitle.setText(getResources().getString(R.string.thesis_title));
+                } else {
+                    appBarTitle.setText(mainPagerAdapter.getPageTitle(position));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+        voiceController = new VoiceController(this);
+        fab = findViewById(R.id.fab);
+        voiceController.setVoiceStatusChangeListener(new VoiceController.StatusChangeListener() {
+            @Override
+            public void onUpdated(int status) {
+                if (status == VoiceController.SPEECH_LISTENING) {
+                    fab.setImageResource(R.drawable.ic_mic_black_24dp);
+                } else if (status == VoiceController.VOICE_PLAYING) {
+                    fab.setImageResource(R.drawable.ic_stop_black_24dp);
+                } else {
+                    fab.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                }
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int status = voiceController.getVoiceStatus();
+                if (status == VoiceController.VOICE_PLAYING) {
+                    voiceController.stop();
+                } else if (status == VoiceController.IDLE) {
+                    voiceController.play();
+                }
+            }
+        });
     }
 
-    class CustomRecognitionListener implements RecognitionListener {
-
-        @Override
-        public void onReadyForSpeech(Bundle params) {
-
-        }
-
-        @Override
-        public void onBeginningOfSpeech() {
-
-        }
-
-        @Override
-        public void onBufferReceived(byte[] buffer) {
-
-        }
-
-        @Override
-        public void onEndOfSpeech() {
-
-        }
-
-        @Override
-        public void onPartialResults(Bundle partialResults) {
-
-        }
-
-        @Override
-        public void onResults(Bundle results) {
-
-        }
-
-        @Override
-        public void onError(int error) {
-
-        }
-
-        @Override
-        public void onRmsChanged(float rmsdB) {
-        }
-
-        @Override
-        public void onEvent(int eventType, Bundle params) {
-
-        }
+    void navToNext() {
+        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
     }
 
+    int getCurrentPage() {
+        return viewPager.getCurrentItem();
+    }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == VoiceController.SPEECH_REQUEST_CODE) {
+            voiceController.onSpeechResult(resultCode, data);
+        }
     }
 
     @Override
@@ -124,18 +111,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         int id = item.getItemId();
         switch (id) {
             case R.id.action_previous:
-                invalidateOptionsMenu();
+                viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
+                voiceController.stop();
+                voiceController.playPrompt();
                 return true;
             case R.id.action_next:
-                invalidateOptionsMenu();
+                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                voiceController.stop();
+                voiceController.playPrompt();
                 return true;
-            case R.id.action_home:
-                invalidateOptionsMenu();
-                navController.navigate(R.id.nav_home);
+            case R.id.action_help:
+                viewPager.setCurrentItem(0);
+                voiceController.stop();
+                return true;
+            case R.id.action_toc:
+                viewPager.setCurrentItem(4);
+                voiceController.stop();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
