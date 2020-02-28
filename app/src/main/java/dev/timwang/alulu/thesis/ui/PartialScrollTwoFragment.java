@@ -10,13 +10,12 @@ import androidx.fragment.app.Fragment;
 
 import dev.timwang.alulu.thesis.R;
 
-public class P15Fragment extends Fragment {
+public class PartialScrollTwoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_p15, container, false);
+        return inflater.inflate(R.layout.fragment_partial_scroll_2, container, false);
     }
 
 }

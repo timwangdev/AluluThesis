@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.P38Fragment">
+    tools:context=".ui.PartialResizeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.ortiz.touchview.TouchImageView
+        android:id="@+id/imageSingle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true" />
 
 </FrameLayout>
