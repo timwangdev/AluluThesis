@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/thesis_title"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:textColor="#000" />
 
         </RelativeLayout>

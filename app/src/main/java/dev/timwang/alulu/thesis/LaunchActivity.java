@@ -13,8 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LaunchActivity extends AppCompatActivity {
 
     static int DELAY = 3000;
-
-    int playCount = 0;
+    static float PLAY_SPEED = 0.6f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class LaunchActivity extends AppCompatActivity {
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
-                mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(0.5f));
+                mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(PLAY_SPEED));
                 mp.setLooping(true);
             }
         });
