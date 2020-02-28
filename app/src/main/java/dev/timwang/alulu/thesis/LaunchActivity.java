@@ -15,6 +15,8 @@ public class LaunchActivity extends AppCompatActivity {
     static int DELAY = 3000;
     static float PLAY_SPEED = 0.6f;
 
+    boolean jumped = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,11 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     public void jump() {
+        if (jumped) {
+            return;
+        }
         startActivity(new Intent(this, MainActivity.class));
+        jumped = true;
         finish();
     }
 }

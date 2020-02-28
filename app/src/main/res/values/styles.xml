@@ -15,4 +15,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
+    <style name="AppTheme.AppBarTitle" parent="Base.TextAppearance.AppCompat.Subhead">
+        <item name="android:fontFamily">@string/medium_font</item>
+        <item name="android:color">@color/colorText</item>
+    </style>
+
 </resources>
