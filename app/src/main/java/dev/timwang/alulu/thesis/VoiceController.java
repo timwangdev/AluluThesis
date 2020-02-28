@@ -23,7 +23,7 @@ class VoiceController {
     private MainActivity context;
     private MediaPlayer mediaPlayer;
     private int voiceStatus = IDLE;
-    private int askCtx = NOT_ASKING;
+    private int askCtx = ASK_START;
     private StatusChangeListener statusChangeListener;
     private List<Integer> audioResIdList = Arrays.asList(
             R.raw.introduction_1,
@@ -32,7 +32,6 @@ class VoiceController {
 
     VoiceController(final MainActivity context) {
         this.context = context;
-        askCtx = ASK_START;
         mediaPlayer = MediaPlayer.create(context, R.raw.prompt_start);
         mediaPlayer.setVolume((float) 1.0, (float) 1.0);
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
