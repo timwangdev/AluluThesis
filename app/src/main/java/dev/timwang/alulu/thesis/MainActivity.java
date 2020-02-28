@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onUpdated(int status) {
                 if (status == VoiceController.SPEECH_LISTENING) {
-                    fab.setImageResource(R.drawable.ic_mic_black_24dp);
+                    fab.setImageResource(R.drawable.ic_play_arrow_black_24dp);
                 } else if (status == VoiceController.VOICE_PLAYING) {
                     fab.setImageResource(R.drawable.ic_stop_black_24dp);
                 } else {

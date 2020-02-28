@@ -164,7 +164,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "PAGE " + (position + 1) + "/45";
+        return "PAGE " + position + "/45";
     }
 
 }

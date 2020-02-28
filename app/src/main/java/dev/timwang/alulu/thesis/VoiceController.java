@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.speech.RecognizerIntent;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,44 +25,44 @@ class VoiceController {
     private int askCtx = ASK_START;
     private StatusChangeListener statusChangeListener;
     private List<Integer> audioResIdList = Arrays.asList(
-            R.raw.introduction_1,
-            R.raw.introduction_2
+//            R.raw.introduction_1,
+//            R.raw.introduction_2
     );
 
     VoiceController(final MainActivity context) {
         this.context = context;
-        mediaPlayer = MediaPlayer.create(context, R.raw.prompt_start);
-        mediaPlayer.setVolume((float) 1.0, (float) 1.0);
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                setVoiceStatus(VOICE_PLAYING);
-                mp.start();
-            }
-        });
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                setVoiceStatus(IDLE);
-                if (askCtx != NOT_ASKING) {
-                    Intent intent = new Intent();
-                    intent.setAction(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-GB");
-                    intent.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
-                    intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "You could answer with \"yes\" or \"no\".");
-                    context.startActivityForResult(intent, SPEECH_REQUEST_CODE);
-                }
-            }
-        });
-        mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
-                setVoiceStatus(IDLE);
-                mp.reset();
-                return true;
-            }
-        });
+//        mediaPlayer = MediaPlayer.create(context, R.raw.prompt_start);
+//        mediaPlayer.setVolume((float) 1.0, (float) 1.0);
+//        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mp) {
+//                setVoiceStatus(VOICE_PLAYING);
+//                mp.start();
+//            }
+//        });
+//        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//            @Override
+//            public void onCompletion(MediaPlayer mp) {
+//                setVoiceStatus(IDLE);
+//                if (askCtx != NOT_ASKING) {
+//                    Intent intent = new Intent();
+//                    intent.setAction(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+//                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+//                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-GB");
+//                    intent.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
+//                    intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "You could answer with \"yes\" or \"no\".");
+//                    context.startActivityForResult(intent, SPEECH_REQUEST_CODE);
+//                }
+//            }
+//        });
+//        mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+//            @Override
+//            public boolean onError(MediaPlayer mp, int what, int extra) {
+//                setVoiceStatus(IDLE);
+//                mp.reset();
+//                return true;
+//            }
+//        });
     }
 
     int getVoiceStatus() {
@@ -82,13 +81,13 @@ class VoiceController {
     }
 
     private void setMediaSource(int id) {
-        try {
-            mediaPlayer.reset();
-            mediaPlayer.setDataSource(context.getResources().openRawResourceFd(id));
-            mediaPlayer.prepareAsync();
-        } catch (Exception e) {
-            Log.e("media-player", e.toString());
-        }
+//        try {
+//            mediaPlayer.reset();
+//            mediaPlayer.setDataSource(context.getResources().openRawResourceFd(id));
+//            mediaPlayer.prepareAsync();
+//        } catch (Exception e) {
+//            Log.e("media-player", e.toString());
+//        }
     }
 
     void onSpeechResult(int resultCode, Intent data) {
@@ -97,7 +96,7 @@ class VoiceController {
             if (result != null && result.get(0) != null
                     && Arrays.asList("yes", "ok", "sure", "yep", "yeah").contains(result.get(0))) {
                 if (askCtx == ASK_START) {
-                    setMediaSource(R.raw.prompt_current);
+//                    setMediaSource(R.raw.prompt_current);
                     askCtx = ASK_CURRENT;
                 } else if (askCtx == ASK_CURRENT) {
                     setMediaSource(audioResIdList.get(context.getCurrentPage()));
@@ -118,14 +117,14 @@ class VoiceController {
 
     void playPrompt(boolean forced) {
         if (forced || askCtx != NOT_ASKING) {
-            setMediaSource(R.raw.prompt_current);
+//            setMediaSource(R.raw.prompt_current);
             askCtx = ASK_NEXT;
         }
     }
 
     void stop() {
         if (askCtx != ASK_START) {
-            mediaPlayer.stop();
+//            mediaPlayer.stop();
             setVoiceStatus(IDLE);
         }
     }
