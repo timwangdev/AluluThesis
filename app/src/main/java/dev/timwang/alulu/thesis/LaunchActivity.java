@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LaunchActivity extends AppCompatActivity {
 
-    static int DELAY = 3000;
+    static int DELAY = 2000;
     static float PLAY_SPEED = 0.6f;
 
     boolean jumped = false;

@@ -1,6 +1,7 @@
 package dev.timwang.alulu.thesis;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,12 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                voiceController.stop();
-                if (position == 0) {
-                    appBarTitle.setText(getResources().getString(R.string.thesis_title));
-                } else {
-                    appBarTitle.setText(mainPagerAdapter.getPageTitle(position));
-                }
+                appBarTitle.setText(mainPagerAdapter.getPageTitle(position));
             }
 
             @Override
@@ -68,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
                     fab.setImageResource(R.drawable.ic_play_arrow_black_24dp);
                 } else if (status == VoiceController.VOICE_PLAYING) {
                     fab.setImageResource(R.drawable.ic_stop_black_24dp);
+                    fab.setBackgroundTintList(ColorStateList.valueOf(
+                            getResources().getColor(R.color.colorAccent, getTheme())
+                    ));
                 } else {
                     fab.setImageResource(R.drawable.ic_play_arrow_black_24dp);
                 }
@@ -81,18 +80,10 @@ public class MainActivity extends AppCompatActivity {
                 if (status == VoiceController.VOICE_PLAYING) {
                     voiceController.stop();
                 } else if (status == VoiceController.IDLE) {
-                    voiceController.playPrompt(true);
+                    voiceController.playSection("1");
                 }
             }
         });
-    }
-
-    void navToNext() {
-        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-    }
-
-    int getCurrentPage() {
-        return viewPager.getCurrentItem();
     }
 
     @Override
@@ -115,13 +106,9 @@ public class MainActivity extends AppCompatActivity {
         switch (id) {
             case R.id.action_previous:
                 viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
-                voiceController.stop();
-                voiceController.playPrompt();
                 return true;
             case R.id.action_next:
                 viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                voiceController.stop();
-                voiceController.playPrompt();
                 return true;
             case R.id.action_help:
                 viewPager.setCurrentItem(0);
@@ -129,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_toc:
                 viewPager.setCurrentItem(4);
-                voiceController.stop();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

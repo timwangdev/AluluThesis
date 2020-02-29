@@ -43,14 +43,14 @@ public class FullPageScrollFragment extends Fragment {
         Activity activity = requireActivity();
         int resId;
         switch (pageNum) {
-            case 1:
+            case 6:
             default:
                 resId = R.drawable.fullpage_1;
                 break;
-            case 2:
+            case 7:
                 resId = R.drawable.fullpage_2;
                 break;
-            case 3:
+            case 8:
                 resId = R.drawable.fullpage_3;
                 break;
         }

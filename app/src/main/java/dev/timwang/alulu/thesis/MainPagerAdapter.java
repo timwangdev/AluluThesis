@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import dev.timwang.alulu.thesis.ui.FullPageScrollFragment;
-import dev.timwang.alulu.thesis.ui.HomeFragment;
-import dev.timwang.alulu.thesis.ui.PageFragment;
-import dev.timwang.alulu.thesis.ui.PartialScrollTwoFragment;
+import dev.timwang.alulu.thesis.ui.ExampleFragment;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
     public MainPagerAdapter(FragmentManager fm) {
@@ -22,16 +19,12 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int i) {
         Log.w("view-pager", String.valueOf(i));
         switch (i) {
-            case 1:
-            case 2:
-            case 3:
-                return new FullPageScrollFragment(i);
-            case 4:
-                return new PageFragment(i);
-            case 5:
-                return new PartialScrollTwoFragment();
+//            case 6:
+//            case 7:
+//            case 8:
+//                return new FullPageScrollFragment(i);
             default:
-                return new HomeFragment();
+                return new ExampleFragment(i);
         }
     }
 
@@ -42,7 +35,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "PAGE " + position + "/45";
+        return "PAGE " + (position + 1) + "/45";
     }
 
 }
