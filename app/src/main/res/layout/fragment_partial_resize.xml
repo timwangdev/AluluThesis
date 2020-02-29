@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.PartialResizeFragment">
 
-    <com.ortiz.touchview.TouchImageView
+    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
         android:id="@+id/imageSingle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

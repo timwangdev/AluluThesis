@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 appBarTitle.setText(mainPagerAdapter.getPageTitle(position));
+                if (position == 6) {
+                    voiceController.beginContent();
+                }
             }
 
             @Override
@@ -60,15 +63,16 @@ public class MainActivity extends AppCompatActivity {
         voiceController.setVoiceStatusChangeListener(new VoiceController.StatusChangeListener() {
             @Override
             public void onUpdated(int status) {
-                if (status == VoiceController.SPEECH_LISTENING) {
-                    fab.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-                } else if (status == VoiceController.VOICE_PLAYING) {
+                if (status == VoiceController.VOICE_PLAYING) {
                     fab.setImageResource(R.drawable.ic_stop_black_24dp);
                     fab.setBackgroundTintList(ColorStateList.valueOf(
-                            getResources().getColor(R.color.colorAccent, getTheme())
+                            getResources().getColor(R.color.colorAccent)
                     ));
                 } else {
                     fab.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                    fab.setBackgroundTintList(ColorStateList.valueOf(
+                            getResources().getColor(R.color.colorPrimary)
+                    ));
                 }
             }
         });

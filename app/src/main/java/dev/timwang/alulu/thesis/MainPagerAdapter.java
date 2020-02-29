@@ -8,6 +8,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import dev.timwang.alulu.thesis.ui.ExampleFragment;
+import dev.timwang.alulu.thesis.ui.FullPageScrollFragment;
+import dev.timwang.alulu.thesis.ui.InfoFragment;
+import dev.timwang.alulu.thesis.ui.PageFragment;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
     public MainPagerAdapter(FragmentManager fm) {
@@ -18,14 +21,16 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int i) {
         Log.w("view-pager", String.valueOf(i));
-        switch (i) {
-//            case 6:
-//            case 7:
-//            case 8:
-//                return new FullPageScrollFragment(i);
-            default:
-                return new ExampleFragment(i);
+        if (i < 6 || i == 9) {
+            return new ExampleFragment(i);
         }
+        if (i < 9) {
+            return new FullPageScrollFragment(i);
+        }
+        if (i == 20) {
+            return new InfoFragment();
+        }
+        return new PageFragment(i);
     }
 
     @Override

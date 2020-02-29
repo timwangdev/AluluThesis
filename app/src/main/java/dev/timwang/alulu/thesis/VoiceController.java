@@ -45,6 +45,7 @@ class VoiceController {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 setVoiceStatus(VOICE_PLAYING);
+                mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(0.9f));
                 mp.start();
             }
         });
