@@ -18,7 +18,6 @@ import dev.timwang.alulu.thesis.R;
 public class FullPageScrollFragment extends Fragment {
 
     private int pageNum;
-    private SubsamplingScaleImageView imageView;
 
     public FullPageScrollFragment(int pageNum) {
         super();
@@ -34,22 +33,42 @@ public class FullPageScrollFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView = view.findViewById(R.id.fullpage_image);
+        SubsamplingScaleImageView imageView = view.findViewById(R.id.fullpage_image);
+        View layout = view.findViewById(R.id.fullpage);
+        layout.setBackgroundResource(getTitleDrawable());
         imageView.setImage(ImageSource.resource(getDrawable()));
+
     }
 
     private int getDrawable() {
         int resId;
         switch (pageNum) {
-            case 6:
             default:
-                resId = R.drawable.fullpage_1;
+            case 38:
+                resId = R.drawable.fullpage_38;
                 break;
-            case 7:
-                resId = R.drawable.fullpage_2;
+            case 39:
+                resId = R.drawable.fullpage_39;
                 break;
-            case 8:
-                resId = R.drawable.fullpage_3;
+            case 40:
+                resId = R.drawable.fullpage_40;
+                break;
+        }
+        return resId;
+    }
+
+    private int getTitleDrawable() {
+        int resId;
+        switch (pageNum) {
+            default:
+            case 38:
+                resId = R.drawable.page_38;
+                break;
+            case 39:
+                resId = R.drawable.page_39;
+                break;
+            case 40:
+                resId = R.drawable.page_40;
                 break;
         }
         return resId;

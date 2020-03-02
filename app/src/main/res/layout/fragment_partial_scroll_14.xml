@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/page_14"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.PartialScrollPage14Fragment">
+
+    <HorizontalScrollView
+        android:layout_width="850px"
+        android:layout_height="400px"
+        android:layout_marginLeft="75px"
+        android:layout_marginTop="115px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tl_1" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tl_2" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tl_3" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tl_4" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:layout_width="850px"
+        android:layout_height="400px"
+        android:layout_marginLeft="75px"
+        android:layout_marginTop="580px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bl_1" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bl_2" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bl_3" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bl_4" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bl_5" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:layout_width="850px"
+        android:layout_height="400px"
+        android:layout_marginLeft="1012px"
+        android:layout_marginTop="115px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tr_1" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tr_2" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tr_3" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:layout_width="850px"
+        android:layout_height="400px"
+        android:layout_marginLeft="1012px"
+        android:layout_marginTop="580px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/br_1" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/br_2" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/br_3" />
+
+            <ImageView
+                android:layout_width="850px"
+                android:layout_height="400px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/br_4" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

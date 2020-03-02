@@ -18,7 +18,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
 
     private MainPagerAdapter mainPagerAdapter;
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
+    private BottomAppBar bottomBar;
     private FloatingActionButton fab;
     private VoiceController voiceController;
 
@@ -33,13 +34,18 @@ public class MainActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
 
         setContentView(R.layout.activity_main);
-        BottomAppBar bottomBar = findViewById(R.id.bar);
+        bottomBar = findViewById(R.id.bar);
         setSupportActionBar(bottomBar);
+        bottomBar.setVisibility(View.INVISIBLE);
+
+        fab = findViewById(R.id.fab);
+        fab.setVisibility(View.INVISIBLE);
 
         final TextView appBarTitle = findViewById(R.id.app_bar_title);
         mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(mainPagerAdapter);
+        viewPager.setPagingEnabled(false);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -48,8 +54,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 appBarTitle.setText(mainPagerAdapter.getPageTitle(position));
-                if (position == 6) {
-                    voiceController.beginContent();
+                if (position > 3) {
+                    bottomBar.setVisibility(View.VISIBLE);
+                    viewPager.setPagingEnabled(true);
+                    voiceController.playPage(position, true);
+                }
+                if (position > 4) {
+                    fab.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -59,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         voiceController = new VoiceController(this);
-        fab = findViewById(R.id.fab);
         voiceController.setVoiceStatusChangeListener(new VoiceController.StatusChangeListener() {
             @Override
             public void onUpdated(int status) {
@@ -82,9 +92,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int status = voiceController.getVoiceStatus();
                 if (status == VoiceController.VOICE_PLAYING) {
+                    viewPager.setPagingEnabled(true);
                     voiceController.stop();
                 } else if (status == VoiceController.IDLE) {
-                    voiceController.playSection("1");
+                    voiceController.playPage(viewPager.getCurrentItem(), false);
                 }
             }
         });
@@ -115,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
                 return true;
             case R.id.action_help:
-                viewPager.setCurrentItem(0);
+                viewPager.setCurrentItem(1);
                 voiceController.stop();
                 return true;
             case R.id.action_toc:
@@ -124,5 +135,9 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void scrollTo(int i) {
+        viewPager.setCurrentItem(i);
     }
 }

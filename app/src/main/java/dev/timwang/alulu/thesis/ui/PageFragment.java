@@ -34,6 +34,10 @@ public class PageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SubsamplingScaleImageView imageView = view.findViewById(R.id.page_image);
-        imageView.setImage(ImageSource.resource(R.drawable.placeholder));
+        imageView.setImage(ImageSource.resource(getResources().getIdentifier(
+                "@drawable/page_" + pageNum,
+                null,
+                getActivity().getPackageName()
+        )));
     }
 }

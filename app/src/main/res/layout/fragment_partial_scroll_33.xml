@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/page_33"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.PartialScrollPage33Fragment">
+
+    <HorizontalScrollView
+        android:layout_width="406px"
+        android:layout_height="312px"
+        android:layout_marginLeft="1000px"
+        android:layout_marginTop="540px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/her_1" />
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/her_2" />
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/her_3" />
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/her_4" />
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/her_5" />
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/her_6" />
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/her_7" />
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/her_8" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:layout_width="406px"
+        android:layout_height="312px"
+        android:layout_marginLeft="1472px"
+        android:layout_marginTop="540px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/blade_1" />
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/blade_2" />
+
+            <ImageView
+                android:layout_width="406px"
+                android:layout_height="312px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/blade_3" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

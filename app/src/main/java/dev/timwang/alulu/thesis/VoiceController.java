@@ -2,20 +2,18 @@ package dev.timwang.alulu.thesis;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 class VoiceController {
 
     static final int IDLE = 0;
     static final int VOICE_PLAYING = 1;
-    static final int SPEECH_LISTENING = 2;
     static final int SPEECH_REQUEST_CODE = 100;
     private static final int ASK_ENABLE = 3;
     private static final int ASK_NEXT = 4;
@@ -24,28 +22,18 @@ class VoiceController {
     private MediaPlayer mediaPlayer;
     private int voiceStatus = IDLE;
     private int askCtx = ASK_ENABLE;
-    private String current = "title";
+    private int current = 0;
+    private Handler currentHdl;
     private StatusChangeListener statusChangeListener;
-    private HashMap<String, Integer> audioMap;
 
     VoiceController(final MainActivity context) {
-        audioMap = new HashMap<>();
-        audioMap.put("title", R.raw.title);
-        audioMap.put("instruction", R.raw.instruction);
-        audioMap.put("abstract", R.raw.abstract_page);
-        audioMap.put("content", R.raw.content);
-        audioMap.put("yes_reply", R.raw.yes);
-        audioMap.put("no_reply", R.raw.no);
-        audioMap.put("end_of_section", R.raw.end_of_section);
-        audioMap.put("sample_section", R.raw.sample_section);
 
         this.context = context;
-        mediaPlayer = MediaPlayer.create(context, R.raw.title);
+        mediaPlayer = MediaPlayer.create(context, R.raw.page_0);
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 setVoiceStatus(VOICE_PLAYING);
-                mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(0.9f));
                 mp.start();
             }
         });
@@ -55,27 +43,42 @@ class VoiceController {
                 setVoiceStatus(IDLE);
                 switch (current) {
                     default:
-                        current = null;
-                        if (askCtx != NOT_ASKING) {
-                            Intent intent = new Intent();
-                            intent.setAction(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-GB");
-                            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Please answer with \"yes\" or \"no\".");
-                            context.startActivityForResult(intent, SPEECH_REQUEST_CODE);
-                        }
+                        current = -1;
                         break;
-                    case "title":
-                        setMediaSource("instruction");
+                    case 0:
+                        if (askCtx != ASK_ENABLE) return;
+                        setMediaSource(1);
+                        context.scrollTo(1);
                         break;
-                    case "instruction":
-                        setMediaSource("abstract");
+                    case 1:
+                        if (askCtx != ASK_ENABLE) return;
+                        setMediaSource(2);
+                        context.scrollTo(2);
                         break;
-                    case "abstract":
-                        setMediaSource("content");
+                    case 2:
+                        if (askCtx != ASK_ENABLE) return;
+                        context.scrollTo(3);
+                        currentHdl = new Handler();
+                        currentHdl.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                setMediaSource(4);
+                                context.scrollTo(4);
+                            }
+                        }, 20000);
                         break;
-                    case "yes_reply":
-                        break;
+                    case 4:
+                    case 7:
+                    case 10:
+                    case 17:
+                    case 25:
+                    case 31:
+                        Intent intent = new Intent();
+                        intent.setAction(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-GB");
+                        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Please answer with \"yes\" or \"no\".");
+                        context.startActivityForResult(intent, SPEECH_REQUEST_CODE);
                 }
             }
         });
@@ -104,59 +107,71 @@ class VoiceController {
         this.statusChangeListener = listener;
     }
 
-    private void setMediaSource(String fid) {
-        Integer rawId = audioMap.get(fid);
-        if (rawId == null) return;
-        AssetFileDescriptor afd = context.getResources().openRawResourceFd(rawId);
+    private void setMediaSource(int fid) {
+        int resId;
+        if (fid == -1) resId = R.raw.yes;
+        else if (fid == -2) resId = R.raw.no;
+        else resId = context.getResources().getIdentifier(
+                    "page_" + fid,
+                    "raw",
+                    context.getPackageName()
+            );
         try {
             mediaPlayer.reset();
-            mediaPlayer.setDataSource(afd);
+            mediaPlayer.setDataSource(context.getResources().openRawResourceFd(resId));
             mediaPlayer.prepareAsync();
             current = fid;
         } catch (Exception e) {
-            Log.e("media-player", e.toString());
+            Log.e("VoiceController", e.toString());
         }
     }
 
     void onSpeechResult(int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && data != null) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            boolean isYes = result != null && result.get(0) != null
-                    && Arrays.asList("yes", "ok", "sure", "yep", "yeah").contains(result.get(0));
-
-            if (askCtx == ASK_ENABLE) {
-                if (isYes) {
+            boolean ok = result != null && result.get(0) != null && Arrays.asList("yes", "ok").contains(result.get(0));
+            if (!ok) {
+                if (askCtx == ASK_ENABLE) {
                     askCtx = ASK_NEXT;
-                    setMediaSource("yes_reply");
-                } else {
-                    setMediaSource("no_reply");
-                    askCtx = NOT_ASKING;
+                    setMediaSource(-1);
                 }
-            } else if (askCtx == ASK_NEXT) {
-                if (isYes) {
-                    setMediaSource("sample_section");
-                } else {
-                    setMediaSource("no_reply");
-                    askCtx = NOT_ASKING;
-                }
+                return;
             }
         }
+        setMediaSource(-2);
+        askCtx = NOT_ASKING;
     }
 
-    void beginContent() {
-        if (askCtx != NOT_ASKING) {
-            playSection("1");
+    void playPage(final int id, boolean auto) {
+        if (currentHdl != null) currentHdl.removeCallbacksAndMessages(null);
+        if (mediaPlayer.isPlaying()) mediaPlayer.stop();
+        if (auto) {
+            if (askCtx != ASK_NEXT) return;
+            if (id < 5) return;
+            setVoiceStatus(VOICE_PLAYING);
+            currentHdl = new Handler();
+            currentHdl.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    playPage(id);
+                }
+            }, 3000);
+        } else {
+            mediaPlayer.stop();
+            playPage(id);
         }
     }
 
-    void playSection(String id) {
-        mediaPlayer.stop();
+    private void playPage(int id) {
+        if (id < 5) return;
         askCtx = ASK_NEXT;
-        setMediaSource("sample_section");
+        setMediaSource(id);
     }
 
     void stop() {
-        mediaPlayer.stop();
+        if (currentHdl != null) currentHdl.removeCallbacksAndMessages(null);
+        if (mediaPlayer.isPlaying()) mediaPlayer.stop();
+        current = -1;
         askCtx = NOT_ASKING;
         setVoiceStatus(IDLE);
     }
