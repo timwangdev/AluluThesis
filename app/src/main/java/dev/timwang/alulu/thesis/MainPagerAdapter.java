@@ -14,6 +14,7 @@ import dev.timwang.alulu.thesis.ui.PartialScrollPage14Fragment;
 import dev.timwang.alulu.thesis.ui.PartialScrollPage16Fragment;
 import dev.timwang.alulu.thesis.ui.PartialScrollPage33Fragment;
 import dev.timwang.alulu.thesis.ui.PartialScrollPage9Fragment;
+import dev.timwang.alulu.thesis.ui.TitlePageScrollFragment;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
     public MainPagerAdapter(FragmentManager fm) {
@@ -26,6 +27,9 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
         Log.i("MainPagerAdapter", String.valueOf(i));
         if (i == 4) {
             return new ContentFragment();
+        }
+        if (i == 5) {
+            return new FullPageScrollFragment();
         }
         if (i == 9) {
             return new PartialScrollPage9Fragment();
@@ -40,7 +44,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
             return new PartialScrollPage33Fragment();
         }
         if (i == 38 || i == 39 || i == 40) {
-            return new FullPageScrollFragment(i);
+            return new TitlePageScrollFragment(i);
         }
         return new PageFragment(i);
     }

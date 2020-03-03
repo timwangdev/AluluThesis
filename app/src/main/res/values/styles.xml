@@ -17,8 +17,7 @@
 
     <style name="AppTheme.ContentText" parent="Base.TextAppearance.AppCompat.Display2">
         <item name="android:fontFamily">@font/poiret_one</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:fontWeight">700</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:color">@color/colorText</item>
     </style>
 

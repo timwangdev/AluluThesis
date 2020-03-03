@@ -1,8 +1,12 @@
 package dev.timwang.alulu.thesis;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.ColorStateList;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    private OnOffReceiver screenReceiver;
     private MainPagerAdapter mainPagerAdapter;
     private CustomViewPager viewPager;
     private BottomAppBar bottomBar;
@@ -26,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        screenReceiver = new OnOffReceiver();
+        registerReceiver(screenReceiver, filter);
 
         final View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_LOW_PROFILE
@@ -99,6 +109,38 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setStreamVolume(
+                AudioManager.STREAM_MUSIC,
+                audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC),
+                AudioManager.FLAG_SHOW_UI
+        );
+    }
+
+    @Override
+    protected void onResume() {
+        if (!OnOffReceiver.wasScreenOn) {
+            Log.w("screen", "SCREEN TURNED ON");
+            voiceController.stop();
+            Intent i = getBaseContext().getPackageManager().
+                    getLaunchIntentForPackage(getBaseContext().getPackageName());
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            finish();
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        voiceController.finish();
+        if (screenReceiver != null) {
+            unregisterReceiver(screenReceiver);
+            screenReceiver = null;
+        }
+        super.onDestroy();
     }
 
     @Override

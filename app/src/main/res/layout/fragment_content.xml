@@ -28,32 +28,35 @@
                 android:id="@+id/s1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
+                android:layout_marginVertical="10dp"
                 android:text="@string/s1"
-                android:textAppearance="@style/AppTheme.ContentText" />
+                android:textAppearance="@style/AppTheme.ContentText"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/s2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
+                android:layout_marginVertical="10dp"
                 android:text="@string/s2"
-                android:textAppearance="@style/AppTheme.ContentText" />
+                android:textAppearance="@style/AppTheme.ContentText"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/s3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
+                android:layout_marginVertical="10dp"
                 android:text="@string/s3"
-                android:textAppearance="@style/AppTheme.ContentText" />
+                android:textAppearance="@style/AppTheme.ContentText"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/s4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s4"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -61,8 +64,8 @@
                 android:id="@+id/s5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s5"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -70,8 +73,8 @@
                 android:id="@+id/s6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s6"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -79,8 +82,8 @@
                 android:id="@+id/s7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s7"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -88,8 +91,8 @@
                 android:id="@+id/s8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s8"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -97,16 +100,17 @@
                 android:id="@+id/s9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
+                android:layout_marginVertical="10dp"
                 android:text="@string/s9"
-                android:textAppearance="@style/AppTheme.ContentText" />
+                android:textAppearance="@style/AppTheme.ContentText"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/s10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s10"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -114,8 +118,8 @@
                 android:id="@+id/s11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s11"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -123,8 +127,8 @@
                 android:id="@+id/s12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s12"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -132,8 +136,8 @@
                 android:id="@+id/s13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s13"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -141,8 +145,8 @@
                 android:id="@+id/s14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s14"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -150,8 +154,8 @@
                 android:id="@+id/s15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s15"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -159,8 +163,8 @@
                 android:id="@+id/s16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s16"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -168,8 +172,8 @@
                 android:id="@+id/s17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s17"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -177,8 +181,8 @@
                 android:id="@+id/s18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s18"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -186,16 +190,17 @@
                 android:id="@+id/s19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
+                android:layout_marginVertical="10dp"
                 android:text="@string/s19"
-                android:textAppearance="@style/AppTheme.ContentText" />
+                android:textAppearance="@style/AppTheme.ContentText"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/s20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s20"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -203,8 +208,8 @@
                 android:id="@+id/s21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/s21"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -212,17 +217,19 @@
                 android:id="@+id/s22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
+                android:layout_marginVertical="10dp"
                 android:text="@string/s22"
-                android:textAppearance="@style/AppTheme.ContentText" />
+                android:textAppearance="@style/AppTheme.ContentText"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/s23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp"
+                android:layout_marginVertical="10dp"
                 android:text="@string/s23"
-                android:textAppearance="@style/AppTheme.ContentText" />
+                android:textAppearance="@style/AppTheme.ContentText"
+                android:textSize="24sp" />
 
 
         </LinearLayout>

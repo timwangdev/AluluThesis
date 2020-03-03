@@ -2,6 +2,7 @@ package dev.timwang.alulu.thesis;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
@@ -30,6 +31,7 @@ class VoiceController {
 
         this.context = context;
         mediaPlayer = MediaPlayer.create(context, R.raw.page_0);
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
@@ -41,44 +43,54 @@ class VoiceController {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 setVoiceStatus(IDLE);
+                if (askCtx == ASK_ENABLE) {
+                    switch (current) {
+                        case 0:
+                            setMediaSource(1);
+                            context.scrollTo(1);
+                            return;
+                        case 1:
+                            setMediaSource(2);
+                            context.scrollTo(2);
+                            return;
+                        case 2:
+                            if (currentHdl != null) currentHdl.removeCallbacksAndMessages(null);
+                            currentHdl = new Handler();
+                            currentHdl.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    setMediaSource(3);
+                                    context.scrollTo(3);
+                                }
+                            }, 25000);
+                            return;
+                        case 3:
+                            if (currentHdl != null) currentHdl.removeCallbacksAndMessages(null);
+                            currentHdl = new Handler();
+                            currentHdl.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    setMediaSource(4);
+                                    context.scrollTo(4);
+                                }
+                            }, 10000);
+                            return;
+                        case 4:
+                            startSpeechIntent();
+                            return;
+                    }
+                }
                 switch (current) {
                     default:
                         current = -1;
-                        break;
-                    case 0:
-                        if (askCtx != ASK_ENABLE) return;
-                        setMediaSource(1);
-                        context.scrollTo(1);
-                        break;
-                    case 1:
-                        if (askCtx != ASK_ENABLE) return;
-                        setMediaSource(2);
-                        context.scrollTo(2);
-                        break;
-                    case 2:
-                        if (askCtx != ASK_ENABLE) return;
-                        context.scrollTo(3);
-                        currentHdl = new Handler();
-                        currentHdl.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                setMediaSource(4);
-                                context.scrollTo(4);
-                            }
-                        }, 20000);
-                        break;
-                    case 4:
+                        return;
                     case 7:
                     case 10:
                     case 17:
                     case 25:
                     case 31:
-                        Intent intent = new Intent();
-                        intent.setAction(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-GB");
-                        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Please answer with \"yes\" or \"no\".");
-                        context.startActivityForResult(intent, SPEECH_REQUEST_CODE);
+                        current = -1;
+                        startSpeechIntent();
                 }
             }
         });
@@ -90,6 +102,15 @@ class VoiceController {
                 return true;
             }
         });
+    }
+
+    private void startSpeechIntent() {
+        Intent intent = new Intent();
+        intent.setAction(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-GB");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Please answer with \"yes\" or \"no\".");
+        context.startActivityForResult(intent, SPEECH_REQUEST_CODE);
     }
 
     int getVoiceStatus() {
@@ -130,11 +151,11 @@ class VoiceController {
         if (resultCode == Activity.RESULT_OK && data != null) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             boolean ok = result != null && result.get(0) != null && Arrays.asList("yes", "ok").contains(result.get(0));
-            if (!ok) {
+            if (ok) {
                 if (askCtx == ASK_ENABLE) {
-                    askCtx = ASK_NEXT;
                     setMediaSource(-1);
                 }
+                askCtx = ASK_NEXT;
                 return;
             }
         }
@@ -145,9 +166,9 @@ class VoiceController {
     void playPage(final int id, boolean auto) {
         if (currentHdl != null) currentHdl.removeCallbacksAndMessages(null);
         if (mediaPlayer.isPlaying()) mediaPlayer.stop();
+        if (id == 4) return;
         if (auto) {
             if (askCtx != ASK_NEXT) return;
-            if (id < 5) return;
             setVoiceStatus(VOICE_PLAYING);
             currentHdl = new Handler();
             currentHdl.postDelayed(new Runnable() {
@@ -155,15 +176,13 @@ class VoiceController {
                 public void run() {
                     playPage(id);
                 }
-            }, 3000);
+            }, 1500);
         } else {
-            mediaPlayer.stop();
             playPage(id);
         }
     }
 
     private void playPage(int id) {
-        if (id < 5) return;
         askCtx = ASK_NEXT;
         setMediaSource(id);
     }
@@ -174,6 +193,10 @@ class VoiceController {
         current = -1;
         askCtx = NOT_ASKING;
         setVoiceStatus(IDLE);
+    }
+
+    void finish() {
+        mediaPlayer.release();
     }
 
     public interface StatusChangeListener {
