@@ -1,10 +1,10 @@
 package dev.timwang.alulu.thesis;
 
-import android.content.Context;
+//import android.content.Context;
+
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.ColorStateList;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +18,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+//import android.media.AudioManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -110,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setStreamVolume(
-                AudioManager.STREAM_MUSIC,
-                audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC),
-                AudioManager.FLAG_SHOW_UI
-        );
+//        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+//        audioManager.setStreamVolume(
+//                AudioManager.STREAM_MUSIC,
+//                audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC),
+//                AudioManager.FLAG_SHOW_UI
+//        );
     }
 
     @Override

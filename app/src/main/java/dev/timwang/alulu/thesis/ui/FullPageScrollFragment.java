@@ -48,13 +48,13 @@ public class FullPageScrollFragment extends Fragment {
             case 38:
                 resId = R.drawable.page_38;
                 break;
-            case 53:
+            case 52:
                 resId = R.drawable.bi_1;
                 break;
-            case 54:
+            case 53:
                 resId = R.drawable.bi_2;
                 break;
-            case 55:
+            case 54:
                 resId = R.drawable.bi_3;
                 break;
         }

@@ -48,9 +48,9 @@ public class ContentFragment extends Fragment {
         view.findViewById(R.id.s18).setOnClickListener(new OnContentClick(vp, 32));
         view.findViewById(R.id.s19).setOnClickListener(new OnContentClick(vp, 34));
         view.findViewById(R.id.s20).setOnClickListener(new OnContentClick(vp, 34));
-        view.findViewById(R.id.s21).setOnClickListener(new OnContentClick(vp, 44));
-        view.findViewById(R.id.s22).setOnClickListener(new OnContentClick(vp, 47));
-        view.findViewById(R.id.s23).setOnClickListener(new OnContentClick(vp, 49));
+        view.findViewById(R.id.s21).setOnClickListener(new OnContentClick(vp, 42));
+        view.findViewById(R.id.s22).setOnClickListener(new OnContentClick(vp, 45));
+        view.findViewById(R.id.s23).setOnClickListener(new OnContentClick(vp, 52));
     }
 
     private class OnContentClick implements View.OnClickListener {

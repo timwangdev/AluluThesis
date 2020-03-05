@@ -2,7 +2,6 @@ package dev.timwang.alulu.thesis;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
@@ -31,7 +30,8 @@ class VoiceController {
 
         this.context = context;
         mediaPlayer = MediaPlayer.create(context, R.raw.page_0);
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.setScreenOnWhilePlaying(true);
+//        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
@@ -80,7 +80,7 @@ class VoiceController {
                             return;
                     }
                 }
-                if (Arrays.asList(7, 10, 27, 25, 31, 33).contains(current)) {
+                if (Arrays.asList(7, 10, 17, 19, 25, 27, 31, 33).contains(current)) {
                     startSpeechIntent();
                 }
                 current = -1;
