@@ -44,14 +44,14 @@ public class TitlePageScrollFragment extends Fragment {
         int resId;
         switch (pageNum) {
             default:
-            case 38:
-                resId = R.drawable.fullpage_38;
-                break;
             case 39:
                 resId = R.drawable.fullpage_39;
                 break;
             case 40:
                 resId = R.drawable.fullpage_40;
+                break;
+            case 41:
+                resId = R.drawable.fullpage_41;
                 break;
         }
         return resId;
@@ -61,14 +61,14 @@ public class TitlePageScrollFragment extends Fragment {
         int resId;
         switch (pageNum) {
             default:
-            case 38:
-                resId = R.drawable.page_38;
-                break;
             case 39:
-                resId = R.drawable.page_39;
+                resId = R.drawable.page_39_bg;
                 break;
             case 40:
-                resId = R.drawable.page_40;
+                resId = R.drawable.page_40_bg;
+                break;
+            case 41:
+                resId = R.drawable.page_41_bg;
                 break;
         }
         return resId;

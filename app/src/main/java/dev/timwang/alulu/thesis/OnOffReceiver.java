@@ -6,7 +6,7 @@ import android.content.Intent;
 
 public class OnOffReceiver extends BroadcastReceiver {
 
-    public static boolean wasScreenOn = true;
+    public boolean wasScreenOn = true;
 
     @Override
     public void onReceive(Context context, Intent intent) {

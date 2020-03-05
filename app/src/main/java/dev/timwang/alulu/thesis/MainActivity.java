@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        if (!OnOffReceiver.wasScreenOn) {
+        if (screenReceiver != null && !screenReceiver.wasScreenOn) {
             Log.w("screen", "SCREEN TURNED ON");
             voiceController.stop();
             Intent i = getBaseContext().getPackageManager().

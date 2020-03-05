@@ -17,12 +17,12 @@ import dev.timwang.alulu.thesis.R;
 
 public class FullPageScrollFragment extends Fragment {
 
-//    private int pageNum;
+    private int pageNum;
 
-//    public FullPageScrollFragment(int pageNum) {
-//        super();
-//        this.pageNum = pageNum;
-//    }
+    public FullPageScrollFragment(int pageNum) {
+        super();
+        this.pageNum = pageNum;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +39,25 @@ public class FullPageScrollFragment extends Fragment {
     }
 
     private int getDrawable() {
-        return R.drawable.page_5;
+        int resId;
+        switch (pageNum) {
+            default:
+            case 5:
+                resId = R.drawable.page_5;
+                break;
+            case 38:
+                resId = R.drawable.page_38;
+                break;
+            case 53:
+                resId = R.drawable.bi_1;
+                break;
+            case 54:
+                resId = R.drawable.bi_2;
+                break;
+            case 55:
+                resId = R.drawable.bi_3;
+                break;
+        }
+        return resId;
     }
 }

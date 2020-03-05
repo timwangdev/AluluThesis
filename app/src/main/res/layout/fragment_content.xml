@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s4"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s5"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s6"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s7"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s8"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s10"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s11"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -128,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s12"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -137,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s13"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -146,7 +146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s14"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -155,7 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s15"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -164,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s16"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -173,7 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s17"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -182,7 +182,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s18"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -200,7 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s20"
                 android:textAppearance="@style/AppTheme.ContentText" />
 
@@ -209,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="94dp"
                 android:text="@string/s21"
                 android:textAppearance="@style/AppTheme.ContentText" />
 

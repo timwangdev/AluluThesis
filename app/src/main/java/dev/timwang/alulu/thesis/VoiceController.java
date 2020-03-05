@@ -80,18 +80,10 @@ class VoiceController {
                             return;
                     }
                 }
-                switch (current) {
-                    default:
-                        current = -1;
-                        return;
-                    case 7:
-                    case 10:
-                    case 17:
-                    case 25:
-                    case 31:
-                        current = -1;
-                        startSpeechIntent();
+                if (Arrays.asList(7, 10, 27, 25, 31, 33).contains(current)) {
+                    startSpeechIntent();
                 }
+                current = -1;
             }
         });
         mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
@@ -160,6 +152,7 @@ class VoiceController {
             }
         }
         setMediaSource(-2);
+        setVoiceStatus(IDLE);
         askCtx = NOT_ASKING;
     }
 
