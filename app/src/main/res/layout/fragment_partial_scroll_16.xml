@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/page_16"
-    tools:context=".ui.PartialScrollPageFragment">
+    tools:activity=".ui.PartialScrollPageFragment">
 
     <HorizontalScrollView
         android:layout_width="406px"

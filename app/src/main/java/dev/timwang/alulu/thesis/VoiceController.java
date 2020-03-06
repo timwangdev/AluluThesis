@@ -18,7 +18,7 @@ class VoiceController {
     private static final int ASK_ENABLE = 3;
     private static final int ASK_NEXT = 4;
     private static final int NOT_ASKING = 5;
-    private MainActivity context;
+    private MainActivity activity;
     private MediaPlayer mediaPlayer;
     private int voiceStatus = IDLE;
     private int askCtx = ASK_ENABLE;
@@ -26,10 +26,10 @@ class VoiceController {
     private Handler currentHdl;
     private StatusChangeListener statusChangeListener;
 
-    VoiceController(final MainActivity context) {
+    VoiceController(final MainActivity activity) {
 
-        this.context = context;
-        mediaPlayer = MediaPlayer.create(context, R.raw.page_0);
+        this.activity = activity;
+        mediaPlayer = MediaPlayer.create(activity, R.raw.page_0);
         mediaPlayer.setScreenOnWhilePlaying(true);
 //        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -47,11 +47,11 @@ class VoiceController {
                     switch (current) {
                         case 0:
                             setMediaSource(1);
-                            context.scrollTo(1);
+                            activity.scrollTo(1);
                             return;
                         case 1:
                             setMediaSource(2);
-                            context.scrollTo(2);
+                            activity.scrollTo(2);
                             return;
                         case 2:
                             if (currentHdl != null) currentHdl.removeCallbacksAndMessages(null);
@@ -60,7 +60,7 @@ class VoiceController {
                                 @Override
                                 public void run() {
                                     setMediaSource(3);
-                                    context.scrollTo(3);
+                                    activity.scrollTo(3);
                                 }
                             }, 25000);
                             return;
@@ -71,7 +71,7 @@ class VoiceController {
                                 @Override
                                 public void run() {
                                     setMediaSource(4);
-                                    context.scrollTo(4);
+                                    activity.scrollTo(4);
                                 }
                             }, 10000);
                             return;
@@ -102,7 +102,7 @@ class VoiceController {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-GB");
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Please answer with \"yes\" or \"no\".");
-        context.startActivityForResult(intent, SPEECH_REQUEST_CODE);
+        activity.startActivityForResult(intent, SPEECH_REQUEST_CODE);
     }
 
     int getVoiceStatus() {
@@ -124,14 +124,14 @@ class VoiceController {
         int resId;
         if (fid == -1) resId = R.raw.yes;
         else if (fid == -2) resId = R.raw.no;
-        else resId = context.getResources().getIdentifier(
+        else resId = activity.getResources().getIdentifier(
                     "page_" + fid,
                     "raw",
-                    context.getPackageName()
+                    activity.getPackageName()
             );
         try {
             mediaPlayer.reset();
-            mediaPlayer.setDataSource(context.getResources().openRawResourceFd(resId));
+            mediaPlayer.setDataSource(activity.getResources().openRawResourceFd(resId));
             mediaPlayer.prepareAsync();
             current = fid;
         } catch (Exception e) {
