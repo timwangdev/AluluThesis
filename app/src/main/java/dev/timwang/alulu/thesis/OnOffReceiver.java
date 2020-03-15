@@ -12,7 +12,10 @@ public class OnOffReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
             wasScreenOn = false;
-        } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
+        } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)
+                || intent.getAction().equals(Intent.ACTION_USER_PRESENT)
+                || intent.getAction().equals(Intent.ACTION_USER_UNLOCKED)
+        ) {
             wasScreenOn = true;
         }
     }

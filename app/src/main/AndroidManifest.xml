@@ -15,7 +15,8 @@
         <receiver
             android:name=".OnOffReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true">
+        </receiver>
 
         <activity android:name=".LaunchActivity">
             <intent-filter>

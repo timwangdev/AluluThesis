@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         final IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_USER_PRESENT);
+        filter.addAction(Intent.ACTION_USER_UNLOCKED);
         screenReceiver = new OnOffReceiver();
         registerReceiver(screenReceiver, filter);
 
